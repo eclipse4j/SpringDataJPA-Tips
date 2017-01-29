@@ -12,7 +12,7 @@ Company findColumnById(@Param("id")Long id);
 ```
 
 
-## 
+## JPA Lock - @Version 사용하기 
 기본적으로 @Version사용시 낙관적 락이 적용된다.(LockModeType.NONE) 
 
 A 사용자가 [OrderId 1번 조회후 ProductId를 10으로 변경] 
