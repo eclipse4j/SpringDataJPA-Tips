@@ -1,5 +1,7 @@
 package com.tistory.eclipse4j.jpa.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -23,27 +25,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "company")
-public class Company extends AuditingEntity {
-    
-    public Company(String code){
-	this.code = code;
-    }
-    
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Table(name = "companies")
+public class Company extends AuditingEntity implements Serializable {
 
-    @Column(name = "name")
-    private String name;
+	public Company(String code) {
+		this.code = code;
+	}
 
-    @Column(name = "code")
-    private String code;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "address")
-    private String address;
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "streetAddress")
-    private String streetAddress;
+	@Column(name = "code")
+	private String code;
+
+	@Column(name = "address")
+	private String address;
+
+	@Column(name = "streetAddress")
+	private String streetAddress;
 }

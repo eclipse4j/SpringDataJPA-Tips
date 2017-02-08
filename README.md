@@ -30,3 +30,27 @@ A사용자의 경우 OptimisticLock과련 오류가 throw되게 되고, B사용�
 
 중간에 find만 할경우는 Update가 완료된 B사용자의  ProductId가 적용되어 보이게된다.
 (http://localhost:8080/orders/1?ms=0)
+
+
+## JPA Spring Data Redis와 같이 사용하기
+https://redis.io/download -> Redis 설치 
+```java
+application.properties 에 redis정보를 추가한다.
+spring.redis.host=127.0.0.1
+spring.redis.port=6379
+```
+
+설정 
+```java
+@Configuration
+@EnableCaching
+public class RedisCacheConfiguration {
+
+	@Autowired
+	private JedisConnectionFactory jedisConnectionFactory;
+
+	...
+}
+```
+
+
