@@ -24,7 +24,7 @@ public class CompanyFindService {
 		return companyRepository.findColumnById(id);
 	}
 
-	@Cacheable(cacheNames = "Company", key = "#id")
+	//@Cacheable(cacheNames = "Company", key = "#id")
 	public Company findCacheDataById(Long id) {
 		log.info("Cacheable 처리 => {}", id);
 		return companyRepository.findOne(id);

@@ -53,4 +53,22 @@ public class RedisCacheConfiguration {
 }
 ```
 
+## JPA Hibernate Second Level Cache  를 적용
 
+```java
+@..
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Company extends AuditingEntity implements Serializable {
+
+	public Company(String code) {
+		this.code = code;
+	}
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+```
+
+## Spring Boot 1.5.8 Up!
