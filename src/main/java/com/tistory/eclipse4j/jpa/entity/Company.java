@@ -1,6 +1,7 @@
 package com.tistory.eclipse4j.jpa.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "companies")
+@Table(name = "company")
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Company extends AuditingEntity implements Serializable {
@@ -40,8 +41,9 @@ public class Company extends AuditingEntity implements Serializable {
 	@Column(name = "code")
 	private String code;
 
-	@Column(name = "address")
-	private String address;
+	@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+	private List<Employee> employees;
 
 	@Column(name = "streetAddress")
 	private String streetAddress;

@@ -24,8 +24,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "orders")
-public class Order extends AuditingEntity {
+@Table(name = "reservation")
+public class Reservation extends AuditingEntity {
 
 	@Id
 	@Column(name = "id")

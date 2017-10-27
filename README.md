@@ -53,7 +53,9 @@ public class RedisCacheConfiguration {
 }
 ```
 
-## JPA Hibernate Second Level Cache  를 적용
+## JPA Hibernate Second Level Cache / Query Cache 를 적용
+- L2 캐시가 적용된 Company Entity 를 최초 조회시 select 구문 호출 확인.
+- Company Update 이후 다시 select 구문이 실행 여부 확인.
 
 ```java
 @..
@@ -70,5 +72,6 @@ public class Company extends AuditingEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 ```
+
 
 ## Spring Boot 1.5.8 Up!

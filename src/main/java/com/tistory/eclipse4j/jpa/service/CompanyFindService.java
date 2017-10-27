@@ -1,5 +1,6 @@
 package com.tistory.eclipse4j.jpa.service;
 
+import com.tistory.eclipse4j.jpa.domain.CompanyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,9 @@ public class CompanyFindService {
 	}
 
 	//@Cacheable(cacheNames = "Company", key = "#id")
-	public Company findCacheDataById(Long id) {
+	public CompanyDto findCacheDataById(Long id) {
 		log.info("Cacheable 처리 => {}", id);
-		return companyRepository.findOne(id);
+		Company company = companyRepository.findOne(id);
+		return CompanyDto.build(company);
 	}
 }
