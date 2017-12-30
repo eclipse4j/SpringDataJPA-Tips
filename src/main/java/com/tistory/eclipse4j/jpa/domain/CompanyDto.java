@@ -1,14 +1,15 @@
 package com.tistory.eclipse4j.jpa.domain;
 
-import com.tistory.eclipse4j.jpa.entity.Company;
-import lombok.Builder;
-import lombok.Data;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import com.tistory.eclipse4j.jpa.entity.Company;
+
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data

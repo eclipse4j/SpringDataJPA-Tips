@@ -1,11 +1,12 @@
 package com.tistory.eclipse4j.jpa.service;
 
-import com.tistory.eclipse4j.jpa.entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tistory.eclipse4j.jpa.ThreadSleep;
+import com.tistory.eclipse4j.jpa.entity.Reservation;
+import com.tistory.eclipse4j.jpa.repository.ReservationRepository;
 
 @Service
 public class ReservationTxService {

@@ -1,6 +1,5 @@
 package com.tistory.eclipse4j.jpa.controller;
 
-import com.tistory.eclipse4j.jpa.service.ReservationTxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tistory.eclipse4j.jpa.entity.Reservation;
+import com.tistory.eclipse4j.jpa.service.ReservationTxService;
 
 @Controller
 public class ReservationController {

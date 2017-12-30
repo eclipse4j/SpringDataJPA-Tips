@@ -21,7 +21,7 @@ public class CompanyFindServiceTest {
      */
     @Test
     public void test_findById() {
-	companyFindService.findById(0L);
+        companyFindService.findById(0L);
     }
 
     /**
@@ -29,6 +29,6 @@ public class CompanyFindServiceTest {
      */
     @Test
     public void test_findColumnById() {
-	companyFindService.findColumnById(0L);
+        companyFindService.findColumnById(0L);
     }
 }

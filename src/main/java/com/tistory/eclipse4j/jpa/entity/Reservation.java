@@ -1,5 +1,7 @@
 package com.tistory.eclipse4j.jpa.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -17,6 +19,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Builder
@@ -25,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "reservation")
-public class Reservation extends AuditingEntity {
+public class Reservation extends AuditingEntity implements Serializable{
 
 	@Id
 	@Column(name = "id")

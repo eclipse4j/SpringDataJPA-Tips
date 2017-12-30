@@ -73,5 +73,22 @@ public class Company extends AuditingEntity implements Serializable {
 	private Long id;
 ```
 
-
 ## Spring Boot 1.5.8 Up!
+## Spring Boot 1.5.9 Up!
+1.5.8에서 QueryDslRepositorySupport 관련 bug로 인해 1.5.9로 버전 올림
+
+## JPA QueryDSL와 같이 사용하기
+```java
+public class CompanyRepositoryImpl extends QueryDslRepositorySupport implements CompanyRepositoryCustom {
+
+    public CompanyRepositoryImpl() {
+        super(Company.class);
+    }
+
+    @Override
+    public Long findMaxId() {
+        return from(QCompany.company).select(QCompany.company.id.max()).fetchOne();
+    }
+
+}
+```

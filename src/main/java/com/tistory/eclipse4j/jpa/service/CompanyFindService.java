@@ -1,10 +1,9 @@
 package com.tistory.eclipse4j.jpa.service;
 
-import com.tistory.eclipse4j.jpa.domain.CompanyDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.tistory.eclipse4j.jpa.domain.CompanyDto;
 import com.tistory.eclipse4j.jpa.entity.Company;
 import com.tistory.eclipse4j.jpa.repository.CompanyRepository;
 

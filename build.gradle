@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.8.RELEASE'
+		springBootVersion = '1.5.9.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -8,6 +8,15 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+}
+
+plugins {
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.9"
+}
+
+ext {
+	querydslVersion = '4.1.4'
+	generatedSourcesDir = file("${buildDir}/generated-sources")
 }
 
 apply plugin: 'java'
@@ -46,6 +55,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	compile('org.hibernate:hibernate-ehcache')
+	compile("com.querydsl:querydsl-jpa:${querydslVersion}")
 
 	compile('org.jsoup:jsoup:1.9.2')
 	compile('com.fasterxml.jackson.core:jackson-core:2.8.3')
@@ -54,4 +64,18 @@ dependencies {
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir generatedSourcesDir
+        }
+    }
+}
+
+querydsl {
+    querydslSourcesDir = relativePath(generatedSourcesDir)
+    library = "com.querydsl:querydsl-apt:${querydslVersion}"
+    jpa = true
 }
