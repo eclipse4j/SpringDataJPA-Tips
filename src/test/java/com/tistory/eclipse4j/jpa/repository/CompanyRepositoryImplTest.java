@@ -1,5 +1,6 @@
 package com.tistory.eclipse4j.jpa.repository;
 
+import com.tistory.eclipse4j.jpa.entity.SimpleCompany;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,11 @@ public class CompanyRepositoryImplTest {
     public void test_MaxID() {
         Long maxId = companyRepository.findMaxId();
         System.out.println(maxId);
+    }
+
+    @Test
+    public void test_FindSimpleCompany() {
+        SimpleCompany simpleCompany = companyRepository.findSimpleCompanyById(0L);
+        System.out.println(simpleCompany);
     }
 }

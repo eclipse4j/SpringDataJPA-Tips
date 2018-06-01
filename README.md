@@ -1,5 +1,32 @@
 # SpringDataJPA-Tips
 
+# 우선 Docker(CE)를 로컬에 인스톨한다.
+Mac :
+https://store.docker.com/editions/community/docker-ce-desktop-mac
+https://hub.docker.com/r/mysql/mysql-server/
+```ecma script level 4
+MYSQL_USER="githubstudy" \
+MYSQL_DATABASE="jpa-study" \
+MYSQL_CONTAINER_NAME="mysql" \
+MYSQL_ROOT_PASSWORD="githubstudy" \
+MYSQL_PASSWORD="githubstudy" 
+
+$ echo $MYSQL_USER
+
+docker \
+  run \
+  --detach \
+  --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
+  --env MYSQL_USER=${MYSQL_USER} \
+  --env MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+  --env MYSQL_DATABASE=${MYSQL_DATABASE} \
+  --name ${MYSQL_CONTAINER_NAME} \
+  --publish 3306:3306 \
+  mysql:5.7
+```
+
+
+
 ## JPA Query new XXXX(args..)를 사용하여 조회. 
 
 @Query Annotation 등으로 특정 컬럼만 호출하도록 한다.
@@ -91,4 +118,33 @@ public class CompanyRepositoryImpl extends QueryDslRepositorySupport implements 
     }
 
 }
+```
+
+## @SqlResultSetMapping 를 이용한 커스텀 엔티티 적용.
+```java
+@SqlResultSetMappings({
+        @SqlResultSetMapping(name = "SimpleCompany",
+                classes = @ConstructorResult(targetClass = SimpleCompany.class,
+                        columns = {
+                                @ColumnResult(name = "code", type = String.class),
+                                @ColumnResult(name = "name", type = String.class)
+                        }))
+})
+...
+public class Company extends AuditingEntity implements Serializable {
+    ...
+}
+```
+```java
+    @Override
+    public List<SimpleCompany> findSimpleCompanies() {
+        StringBuilder queryBuilder = new StringBuilder("SELECT");
+        queryBuilder.append(" code,");
+        queryBuilder.append(" name");
+        queryBuilder.append(" FROM company ");
+        queryBuilder.append(" LIMIT 10 ");
+        Query query = getEntityManager().createNativeQuery(queryBuilder.toString(), "SimpleCompany");
+        List<SimpleCompany> results = query.getResultList();
+        return results;
+    }
 ```
